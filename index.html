@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE END</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin-top: 10%;
+            overflow-x: hidden;
+        }
+        h1 {
+            letter-spacing: 10px;
+            text-shadow: 0 0 10px #ffffff;
+        }
+        .door-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .door {
+            border: 2px solid #333;
+            padding: 40px 20px;
+            cursor: pointer;
+            width: 150px;
+            transition: 0.3s;
+            background-color: #111;
+            position: relative;
+        }
+        .door:hover {
+            border-color: #fff;
+            background-color: #222;
+        }
+        #message-box {
+            margin-top: 40px;
+            font-size: 1.2em;
+            color: #ff4444;
+            min-height: 50px;
+        }
+        .hidden-image {
+            display: none;
+            margin-top: 20px;
+            max-width: 400px;
+            border: 1px solid #333;
+        }
+        
+        /* The Secret Page Styling */
+        .secret-page {
+            display: none;
+            margin-top: 20%;
+            font-size: 2em;
+            color: #44ff44;
+        }
+        
+        /* HIDDEN LINKS (Invisible to the naked eye) */
+        .stealth-link {
+            color: #050505; /* Blends with background */
+            text-decoration: none;
+            cursor: default;
+        }
+        .stealth-link::selection { background: transparent; }
+        
+        /* A clickable area hidden in the top left corner */
+        #corner-secret {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="corner-secret" onclick="showSecretPage('lujyf')"></div>
+
+    <div id="main-content">
+        <h1>THE EN<a href="#" class="stealth-link" style="color: inherit;" onclick="showSecretPage('walk')">D</a></h1>
+        
+        <p>Choose your exit<a href="#" class="stealth-link" onclick="showSecretPage('thzr7')">.</a></p>
+
+        <div class="door-container">
+            <div class="door" onclick="checkDoor('life')">
+                <h3>END OF<br>LIFE</h3>
+            </div>
+            <div class="door" onclick="checkDoor('fun')">
+                <h3>END OF<br>FUN</h3>
+                <small>[LOCKED]</small>
+            </div>
+            <div class="door" onclick="checkDoor('time')">
+                <h3>END OF<br>TIME</h3>
+                <small>[LOCKED]</small>
+            </div>
+        </div>
+
+        <div id="message-box"></div>
+
+        <img id="life-image" class="hidden-image" src="https://i.ibb.co/pv2Ydntn/image.png" alt="Life Door">
+        <img id="fun-image" class="hidden-image" src="https://i.ibb.co/twn1dC1M/image.png" alt="Fun Door">
+        <img id="time-image" class="hidden-image" src="https://media.tenor.com/9v1hW63LItYAAAAi/fart-farty.gif" alt="Time Door">
+        
+        <br><br><br><br><br>
+        <a href="#" class="stealth-link" onclick="showSecretPage('@proton.me')">-</a>
+    </div>
+
+    <div id="secret-page-container" class="secret-page">
+        <p id="secret-text"></p>
+        <button onclick="goBack()" style="background:none; color:#fff; border:1px solid #fff; padding:10px; cursor:pointer;">RETURN</button>
+    </div>
+
+    <script>
+        // The Passwords
+        const funKey = "Spinell"; 
+        const timeKey = "u<brain"; 
+
+        function checkDoor(doorType) {
+            const messageBox = document.getElementById("message-box");
+            
+            // Hide all images first
+            document.getElementById("life-image").style.display = "none";
+            document.getElementById("fun-image").style.display = "none";
+            document.getElementById("time-image").style.display = "none";
+
+            if (doorType === 'life') {
+                messageBox.innerHTML = "You came to read it. You thought you figured it out.<br>I had to make it more obscure.";
+                messageBox.style.color = "#ffffff";
+                document.getElementById("life-image").style.display = "inline-block";
+            } 
+            
+            else if (doorType === 'fun') {
+                let guess = prompt("ENTER KEY FOR THE END OF FUN:");
+                if (guess === funKey) {
+                    messageBox.innerHTML = "The fun has ended. Piece together the fragments and email the void to continue.";
+                    messageBox.style.color = "#44ff44";
+                    document.getElementById("fun-image").style.display = "inline-block";
+                } else {
+                    messageBox.innerHTML = "ACCESS DENIED. INCORRECT KEY.";
+                    messageBox.style.color = "#ff4444";
+                }
+            } 
+            
+            else if (doorType === 'time') {
+                let guess = prompt("ENTER KEY FOR THE END OF TIME:");
+                if (guess === timeKey) {
+                    messageBox.innerHTML = "YOU FOUND THE SECRET OF LIFE.";
+                    messageBox.style.color = "#ffffff";
+                    document.getElementById("time-image").style.display = "inline-block";
+                } else {
+                    messageBox.innerHTML = "ACCESS DENIED. INCORRECT KEY.";
+                    messageBox.style.color = "#ff4444";
+                }
+            }
+        }
+
+        // Functions for the hidden email pages
+        function showSecretPage(fragment) {
+            document.getElementById("main-content").style.display = "none";
+            document.getElementById("secret-page-container").style.display = "block";
+            document.getElementById("secret-text").innerText = "FRAGMENT FOUND: " + fragment;
+        }
+
+        function goBack() {
+            document.getElementById("secret-page-container").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
